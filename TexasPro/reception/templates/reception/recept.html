@@ -1,0 +1,31 @@
+<!-- Loads the path to your static files -->
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'reception/style.css' %}" />
+
+
+
+
+<center><h1>Welcome</h1></center>
+
+{% if error_message %}
+	<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+
+<form action="/processing/" method="POST">
+	{% csrf_token %}
+	<input type="text" name="a" hidden="true">
+	Enter RFID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ensp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; <input type="text" name="rfid_in" value= {{rfid}} ></input><br>
+	Enter Symptoms  &nbsp; : &nbsp; <input type="text" name="disease_in" /><br>
+  	Select Doctor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 
+  	<select name="doctor_id">
+  		{% for doctor_obj in all_obj_doctor %}
+	    	<option value="{{ doctor_obj.id }}">{{ doctor_obj.name }}</option>
+	    {% endfor %}
+  	</select><br><br>
+
+  	<input type="submit"  value=" Appoint " style="font-size:14pt;color:white;background-color:green;border:2px solid #336600;padding:3px">
+
+	
+</form>
+

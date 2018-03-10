@@ -1,0 +1,47 @@
+<!-- Loads the path to your static files -->
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'reception/style.css' %}" />
+
+
+
+<h1><center>Welcome Mr. {{required_doctor_object.name}}</center></h1>
+<div class="col-sm-4 col-lg-2">
+    <div class="thumbnail">
+        <div class="caption">
+            <h5>Name &nbsp; : &nbsp; {{ required_doctor_object.name }}</h5>
+            <h5> {{ required_doctor_object.degree }}</h5>
+            <h5>Office No. &nbsp; : &nbsp; {{ required_doctor_object.room_no }}</h5>
+            <h5>Mobile No. &nbsp; : &nbsp; {{ required_doctor_object.mobile_no }}</h5><br>
+
+            {% if error_message %}
+                <h4> {{error_message}} </h4>
+            {% else %}
+                <form action="{% url 'reception:doctor' required_doctor_object.id %}" method="POST">
+                    {% csrf_token %}
+                    {% for queue in required_doctor_object.queue_set.all %}
+
+                        <input type="submit" name="queue_no" value=" {{ queue.queue_no }} " style="font-size:14pt;color:white;background-color:green;border:2px solid #336600;padding:3px">
+                        
+                    {% endfor %}
+                </form>
+
+
+
+                <h5>Appointment No. &nbsp; : &nbsp; {{ required_user_object.appointment_no }}</h5>
+                <h5>Patient Name &nbsp; : &nbsp; {{ required_user_object.name }}</h5>
+                <h5>Age &nbsp; : &nbsp; {{ required_user_object.age }}</h5>
+                <h5>Sex &nbsp; : &nbsp; {{ required_user_object.sex }}</h5>
+                <h5>Symptoms &nbsp; : &nbsp; {{ prescription_object.symptoms }}</h5>
+                <form action="{% url 'reception:doctor_job_complete' required_doctor_object.id required_user_object.rfid %}" method="POST">
+                    {% csrf_token %}
+                    <b>Disease Identified &nbsp; : &nbsp; </b>
+                    <input type="text" name="disease_in" />
+                    <b>Prescription &nbsp; : &nbsp;</b> 
+                    <textarea name="prescription" cols="50" rows="6" > </textarea><br><br><br>
+
+                    <input type="submit" name="submit" value=" Done " style="font-size:14pt;color:white;background-color:green;border:2px solid #336600;padding:3px">
+                </form>
+            {% endif %}         
+        </div>
+    </div>
+</div>

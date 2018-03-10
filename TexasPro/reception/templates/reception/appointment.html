@@ -1,0 +1,31 @@
+<!-- Loads the path to your static files -->
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'reception/style.css' %}" />
+
+
+<h2>Appointment Generated</h2>
+    <div class="col-sm-4 col-lg-2">
+        <div class="thumbnail">
+            <div class="caption">
+                <h5>Name &nbsp; : &nbsp; {{ user_object.name }}</h5>
+                <h5>RFID No. &nbsp; : &nbsp; {{ user_object.rfid }}</h5>
+                <h5>Age &nbsp; : &nbsp; {{ user_object.age }}</h5>
+                <h5>Sex &nbsp; : &nbsp; {{ user_object.sex }}</h5>
+                <h5>Mobile &nbsp; : &nbsp; {{ user_object.mobile_no }}</h5>
+                <h5>Symptoms &nbsp; : &nbsp; {{ prescription_object.symptoms }}</h5><br>
+                <h5>Appointment number &nbsp; : &nbsp; {{ user_object.appointment_no }}</h5><br>
+
+                <h5>Queue number &nbsp; : &nbsp; {{ doctor_object.cur_queue_no }}</h5><br>
+
+                <h5>Doctor's Name &nbsp; : &nbsp; {{ doctor_object.name }}</h5>
+                <h5> {{ doctor_object.degree }}</h5>
+                <h5>Room No. &nbsp; : &nbsp; {{ doctor_object.room_no }}</h5>
+                <h5>Mobile No. &nbsp; : &nbsp; {{ doctor_object.mobile_no }}</h5><br>
+                
+                <form action="{% url 'reception:index' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit"  value=" Done " style="font-size:14pt;color:white;background-color:green;border:2px solid #336600;padding:3px">
+                </form>
+            </div>
+        </div>
+    </div>
