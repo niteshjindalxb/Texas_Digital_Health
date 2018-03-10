@@ -3,8 +3,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'reception/style.css' %}" />
 
 
-
+<header>
 <h1><center>Welcome Mr. {{required_doctor_object.name}}</center></h1>
+</header>
+
+<hr>
 <div class="col-sm-4 col-lg-2">
     <div class="thumbnail">
         <div class="caption">
@@ -13,6 +16,7 @@
             <h5>Office No. &nbsp; : &nbsp; {{ required_doctor_object.room_no }}</h5>
             <h5>Mobile No. &nbsp; : &nbsp; {{ required_doctor_object.mobile_no }}</h5><br>
 
+                <hr>
             {% if error_message %}
                 <h4> {{error_message}} </h4>
             {% else %}
@@ -20,13 +24,12 @@
                     {% csrf_token %}
                     {% for queue in required_doctor_object.queue_set.all %}
 
-                        <input type="submit" name="queue_no" value=" {{ queue.queue_no }} " style="font-size:14pt;color:white;background-color:green;border:2px solid #336600;padding:3px">
-                        
+                        <input type="submit" name="queue_no" value="{{queue.queue_no}}" style="font-size:14pt;color:white;background-color:green;border:2px solid #336600;padding:3px">  
                     {% endfor %}
                 </form>
 
 
-
+                <hr>
                 <h5>Appointment No. &nbsp; : &nbsp; {{ required_user_object.appointment_no }}</h5>
                 <h5>Patient Name &nbsp; : &nbsp; {{ required_user_object.name }}</h5>
                 <h5>Age &nbsp; : &nbsp; {{ required_user_object.age }}</h5>
@@ -45,3 +48,5 @@
         </div>
     </div>
 </div>
+
+<hr>

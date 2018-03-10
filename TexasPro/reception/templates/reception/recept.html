@@ -2,16 +2,15 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'reception/style.css' %}" />
 
-
-
-
-<center><h1>Welcome</h1></center>
-
+<header>
+	<center><h1>Welcome</h1></center>
+</header>
+<hr>
 {% if error_message %}
 	<p><strong>{{ error_message }}</strong></p>
 {% endif %}
 
-
+<br><br><br><br>
 <form action="/processing/" method="POST">
 	{% csrf_token %}
 	<input type="text" name="a" hidden="true">

@@ -2,16 +2,19 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'reception/style.css' %}" />
 
-
+<header>
 <h1><center>Welcome Mr. {{required_user_object.name}}</center></h1>
+</header>
+<hr>
+
 <div class="col-sm-4 col-lg-2">
     <div class="thumbnail">
         <div class="caption">
             <h5>Name &nbsp; : &nbsp; {{ required_user_object.name }}</h5>
             <h5>RFID &nbsp; : &nbsp; {{ required_user_object.rfid }}</h5>
             <h5>Age &nbsp; : &nbsp; {{ required_user_object.age }}</h5>
-            <h5>Sex &nbsp; : &nbsp; {{ required_user_object.sex }}</h5><br>
-            
+            <h5>Sex &nbsp; : &nbsp; {{ required_user_object.sex }}</h5>
+            <hr><br>
             
             {% for prescription_object in required_user_object.prescription_set.all %}
                 {% for required_doctor_object in all_doctor_object %}
@@ -23,7 +26,7 @@
                         <h5>Mobile No. &nbsp; : &nbsp; {{ required_doctor_object.mobile_no }}</h5>
                         <h5>Symptoms &nbsp; : &nbsp; {{ prescription_object.symptoms }}</h5>
                         <h5>Disease Identified&nbsp; : &nbsp; {{ prescription_object.disease }}</h5>
-                        <h5>Prescription &nbsp; : &nbsp; {{ prescription_object.pres }} </h5><br>
+                        <h5>Prescription &nbsp; : &nbsp; {{ prescription_object.pres }} </h5><hr><br>
                         
                         {% if prescription_object.pres == 'Not yet prescribed' %}
                             <b>Appointment No. &nbsp; : &nbsp; {{ required_user_object.appointment_no }}</b> &emsp;

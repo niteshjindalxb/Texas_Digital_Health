@@ -1,3 +1,11 @@
+header, footer {
+    padding: 0.35em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
 body{
 	background-image: url("images/image.jpeg");
 	background-color: grey;
